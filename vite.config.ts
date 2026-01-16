@@ -9,6 +9,19 @@ export default defineConfig({
     // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+    {
+      name: 'figma-assets-mock',
+      resolveId(id: string) {
+        if (id.startsWith('figma:asset/')) {
+          return '\0' + id;
+        }
+      },
+      load(id: string) {
+        if (id.startsWith('\0figma:asset/')) {
+          return `export default "https://placehold.co/600x400?text=Figma+Asset";`;
+        }
+      }
+    },
   ],
   resolve: {
     alias: {

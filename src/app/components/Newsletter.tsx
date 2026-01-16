@@ -1,91 +1,61 @@
 import React from 'react';
 import content from "@/data/content.json";
-import { Facebook, Instagram, Twitter, Dribbble } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import imgLogo from "figma:asset/f60cb104a0e2a87476a60f8a5108c622da55bfd8.png";
 
 export function Newsletter() {
-  const socialIcons: Record<string, React.ReactNode> = {
-    "Facebook": <Facebook size={20} />,
-    "Instagram": <Instagram size={20} />,
-    "Twitter": <Twitter size={20} />,
-    "Dribbble": <Dribbble size={20} />
-  };
+   return (
+      <div className="bg-slate-50 pt-[120px] border-t border-slate-200 mt-20">
+         <div className="max-w-[1600px] mx-auto px-[clamp(20px,5vw,80px)]">
 
-  return (
-    <div className="py-20 border-t border-slate-200 mt-32">
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16">
-        
-        {/* Subscribe Column */}
-        <div className="md:col-span-5 flex flex-col gap-8">
-           <h3 className="text-3xl font-script text-slate-900">Subscribe to our newsletter</h3>
-           <div className="flex flex-col gap-4">
-              <div className="relative">
-                 <input 
-                   type="email" 
-                   placeholder="Email here..." 
-                   className="w-full bg-transparent border border-slate-300 rounded-full px-8 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary"
-                 />
-                 <button className="absolute right-2 top-2 bottom-2 bg-primary text-slate-900 rounded-full px-8 font-semibold uppercase text-sm hover:bg-slate-900 hover:text-white transition-colors">
-                    Subscribe
-                 </button>
-              </div>
-              <div className="flex items-center gap-3 text-slate-500 text-sm">
-                 <div className="w-4 h-4 rounded-full border border-slate-300" />
-                 <span>Lorem ipsum dolor sit amet comited</span>
-              </div>
-           </div>
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
+               <div className="flex flex-col gap-8">
+                  <h3 className="text-[clamp(40px,6vw,80px)] font-display text-slate-900 leading-none">
+                     Subscribe to our <span className="text-primary">newsletter</span>
+                  </h3>
+                  <div className="relative max-w-lg">
+                     <input
+                        type="email"
+                        placeholder="Email address"
+                        className="w-full bg-transparent border-b-2 border-slate-300 py-6 text-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-primary transition-colors"
+                     />
+                     <button className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-white hover:bg-primary transition-colors">
+                        <ArrowRight size={24} />
+                     </button>
+                  </div>
+               </div>
 
-        {/* Quick Links */}
-        <div className="md:col-span-2 md:col-start-7 flex flex-col gap-6">
-           <h3 className="text-xl font-script text-slate-900">Quick links</h3>
-           <div className="flex flex-col gap-3">
-              <a href="#" className="text-slate-500 hover:text-primary transition-colors">About us</a>
-              <a href="#" className="text-slate-500 hover:text-primary transition-colors">Services</a>
-              <a href="#" className="text-slate-500 hover:text-primary transition-colors">Blog</a>
-              <a href="#" className="text-slate-500 hover:text-primary transition-colors">Contact us</a>
-           </div>
-        </div>
-
-        {/* Get in Touch */}
-        <div className="md:col-span-3 flex flex-col gap-6">
-           <h3 className="text-xl font-script text-slate-900">Get in touch</h3>
-           <div className="flex flex-col gap-1 text-slate-900">
-              <span className="font-bold text-lg">{content.site.phone}</span>
-              <a href={`mailto:${content.site.email}`} className="text-slate-500 hover:text-primary">{content.site.email}</a>
-           </div>
-           <div className="text-slate-500">
-              {content.site.address.map((line, i) => (
-                 <p key={i}>{line}</p>
-              ))}
-           </div>
-        </div>
-
-        {/* Socials */}
-        <div className="md:col-span-1 flex flex-col items-end gap-6 text-slate-900">
-           {content.site.socials.map((social, index) => (
-             <a key={index} href={social.url} className="hover:text-primary" aria-label={social.platform}>
-               {socialIcons[social.platform] || social.platform}
-             </a>
-           ))}
-        </div>
-      </div>
-
-      {/* Giant Logo */}
-      <div className="mt-32 px-6">
-         <div className="w-full opacity-100">
-            {/* Logo forced to black for light mode visibility */}
-            <img src={imgLogo} alt={content.site.title} className="w-full h-auto brightness-0" />
-         </div>
-         <div className="flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-slate-400 mt-8 uppercase tracking-widest border-t border-slate-100 pt-8 gap-4 md:gap-0">
-            <span>Copyright © 2024 designed by ThemeTechMount</span>
-            <div className="flex gap-8">
-               <a href="#">Changelog</a>
-               <a href="#">Style guide</a>
-               <a href="#">Licenses</a>
+               <div className="grid grid-cols-2 gap-12">
+                  <div>
+                     <h4 className="text-lg font-bold uppercase tracking-widest mb-6">Menu</h4>
+                     <div className="flex flex-col gap-4 text-slate-500 text-lg">
+                        <a href="#" className="hover:text-primary transition-colors">About</a>
+                        <a href="#" className="hover:text-primary transition-colors">Services</a>
+                        <a href="#" className="hover:text-primary transition-colors">Team</a>
+                        <a href="#" className="hover:text-primary transition-colors">Contact</a>
+                     </div>
+                  </div>
+                  <div>
+                     <h4 className="text-lg font-bold uppercase tracking-widest mb-6">Socials</h4>
+                     <div className="flex flex-col gap-4 text-slate-500 text-lg">
+                        {content.site.socials.map((s: any, i: number) => (
+                           <a key={i} href={s.url} className="hover:text-primary transition-colors">{s.platform}</a>
+                        ))}
+                     </div>
+                  </div>
+               </div>
             </div>
+
+            <div className="w-full overflow-hidden flex justify-center pb-12 opacity-100">
+               <img src={imgLogo} alt="Logo" className="w-full h-auto max-h-[400px] object-contain brightness-0 opacity-10" />
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-center py-8 border-t border-slate-200 text-slate-400 text-sm uppercase tracking-widest">
+               <p>© 2026 Sunrise Cleaning. All rights reserved.</p>
+               <p>Designed by Justin Reau</p>
+            </div>
+
          </div>
       </div>
-    </div>
-  );
+   );
 }

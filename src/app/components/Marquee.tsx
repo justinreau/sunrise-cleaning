@@ -8,33 +8,25 @@ export function Marquee() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Calculate total width or just assume standard infinite loop logic
-    // GSAP's horizontalLoop helper is great, but we can do a simple to animation
-    // if the content is duplicated enough.
-    
     if (!trackRef.current) return;
-
-    // Get the width of the first set of items
     const width = trackRef.current.scrollWidth / 2;
-
     gsapFB.to(trackRef.current, {
       x: -width,
-      duration: 20,
+      duration: 30,
       ease: "linear",
       repeat: -1
     });
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="w-full bg-white overflow-hidden py-[clamp(40px,5vw,80px)] border-y border-slate-200">
-      <div ref={trackRef} className="flex whitespace-nowrap">
-        {/* Render twice for seamless loop */}
-        {[...content.marquee, ...content.marquee].map((text, i) => (
+    <div ref={containerRef} className="w-full bg-white overflow-hidden border-y border-slate-200 py-12 md:py-20">
+      <div ref={trackRef} className="flex whitespace-nowrap items-center">
+        {[...content.marquee, ...content.marquee, ...content.marquee].map((text, i) => (
           <div key={i} className="flex items-center">
-            <span className="text-[clamp(3rem,8vw,8rem)] font-display text-transparent uppercase px-[clamp(20px,4vw,60px)] opacity-50 hover:opacity-100 transition-opacity [-webkit-text-stroke:1px_#cbd5e1]">
+            <span className="text-[clamp(60px,8vw,120px)] font-display uppercase font-bold text-slate-900 px-8 tracking-tighter hover:text-primary transition-colors cursor-default">
               {text}
             </span>
-            <span className="text-[clamp(2rem,6vw,5rem)] text-primary">/</span>
+            <div className="w-4 h-4 rounded-full bg-primary mx-4" />
           </div>
         ))}
       </div>

@@ -11,100 +11,84 @@ gsapFB.registerPlugin(ScrollTrigger);
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageInnerRef = useRef<HTMLImageElement>(null);
+  const titleLeftRef = useRef<HTMLHeadingElement>(null);
+  const titleRightRef = useRef<HTMLHeadingElement>(null);
 
-  // Single Animation Timeline for all viewports
-  // We use ScrollTrigger defaults that work responsively
   useGSAP(() => {
-    const tl = gsapFB.timeline({ defaults: { ease: "power4.out" } });
+    const tl = gsapFB.timeline({ defaults: { ease: "power3.out" } });
 
-    tl.from(".hero-title-left", { y: 100, opacity: 0, duration: 1 })
-      .from(".hero-title-right", { y: 100, opacity: 0, duration: 1 }, "-=0.8")
-      .from(".hero-image", { scale: 1.1, opacity: 0, duration: 1.2 }, "-=0.8")
-      .from(".hero-desc", { y: 50, opacity: 0, duration: 0.8 }, "-=0.6");
+    tl.from(imageInnerRef.current, { scale: 1.4, duration: 1.5, ease: "expo.out" })
+      .from([titleLeftRef.current, titleRightRef.current], {
+        y: 150,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.1
+      }, "-=1.2")
+      .from(".hero-desc", { y: 20, opacity: 0, duration: 0.8 }, "-=0.8");
 
     if (imageInnerRef.current) {
-        gsapFB.to(imageInnerRef.current, {
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            },
-            y: -50,
-            scale: 1.1,
-            ease: "none"
-        });
+      gsapFB.to(imageInnerRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        },
+        y: 100,
+        scale: 1.1,
+        ease: "none"
+      });
     }
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative min-h-[100dvh] py-[clamp(60px,8vw,120px)] overflow-hidden flex flex-col justify-center">
-      
-      {/* 
-        Grid Layout
-        Mobile: 1 Column
-        Desktop: 12 Columns
-        Standard Max Width Container
-      */}
-      <div className="w-full max-w-[1400px] mx-auto px-[clamp(20px,5vw,80px)] grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative">
-        
-        {/* Left Title */}
-        <div className="hero-title-left col-span-1 md:col-span-3 order-1 md:order-1 text-left z-10">
-           <h1 className="text-[clamp(48px,10vw,240px)] leading-[0.85] text-primary font-display font-bold">
-             {content.hero.headlineLeft}
-           </h1>
+    <section ref={containerRef} className="relative min-h-[100dvh] pt-[120px] pb-[60px] overflow-hidden flex flex-col justify-center">
+      <div className="w-full max-w-[1600px] mx-auto px-[clamp(20px,5vw,80px)] grid grid-cols-1 md:grid-cols-12 grid-rows-[auto_auto_auto] md:grid-rows-1 items-center relative gap-y-12 md:gap-y-0">
+
+        {/* HERO IMAGE */}
+        <div className="col-span-1 row-start-2 md:col-start-4 md:col-end-10 md:row-start-1 flex justify-center w-full z-0">
+          <div className="relative w-full aspect-[3/4] md:aspect-[3/3.8] rounded-[100px] md:rounded-tl-[200px] md:rounded-tr-[200px] md:rounded-br-[200px] md:rounded-bl-[200px] overflow-hidden bg-slate-100">
+            <img
+              ref={imageInnerRef}
+              src={imgHeroImage}
+              alt="Hero"
+              className="w-full h-full object-cover origin-center"
+            />
+          </div>
         </div>
 
-        {/* Right Title */}
-        <div className="hero-title-right col-span-1 md:col-span-3 order-2 md:order-3 text-left md:text-right z-10">
-           <h1 className="text-[clamp(48px,10vw,240px)] leading-[0.85] text-primary font-display font-bold">
-             {content.hero.headlineRight}
-           </h1>
+        {/* LEFT TITLE */}
+        <div className="hero-title-left col-span-1 row-start-1 md:col-start-1 md:col-end-7 md:row-start-1 text-center md:text-right z-10 pointer-events-none mix-blend-hard-light md:mix-blend-normal">
+          <h1 ref={titleLeftRef} className="text-[clamp(80px,14vw,280px)] leading-[0.8] text-primary font-display font-bold tracking-tighter">
+            {content.hero.headlineLeft}
+          </h1>
         </div>
 
-        {/* Hero Image */}
-        {/* 
-           Mobile: Row 3 (Below text). Stadium Shape.
-           Desktop: Col 4-9 (Center). Pill/Architectural Shape.
-           Order 3 on mobile. Order 2 on desktop.
-        */}
-        <div className="hero-image col-span-1 md:col-span-6 order-3 md:order-2 flex justify-center w-full">
-            <div className="
-                relative 
-                w-full max-w-[500px] md:max-w-none 
-                aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/3.5]
-                rounded-[100px] md:rounded-tl-[150px] md:rounded-tr-[150px] md:rounded-br-[150px] 
-                overflow-hidden 
-                border border-slate-200 
-                bg-white shadow-2xl
-                transition-all duration-500
-            ">
-                <img 
-                    ref={imageInnerRef}
-                    src={imgHeroImage} 
-                    alt="Hero" 
-                    className="w-full h-full object-cover"
-                />
-            </div>
+        {/* RIGHT TITLE */}
+        <div className="hero-title-right col-span-1 row-start-3 md:col-start-7 md:col-end-13 md:row-start-1 text-center md:text-left z-10 pointer-events-none mix-blend-hard-light md:mix-blend-normal md:-ml-12">
+          <h1 ref={titleRightRef} className="text-[clamp(80px,14vw,280px)] leading-[0.8] text-primary font-display font-bold tracking-tighter">
+            {content.hero.headlineRight}
+          </h1>
         </div>
 
-        {/* Description - Absolute Desktop / Flow Mobile */}
-        {/* 
-           We can make this part of the grid too to strictly solve "splintering".
-           Mobile: Order 4.
-           Desktop: Absolute position (breaking grid) OR Grid placement?
-           Let's use Absolute for Desktop to keep the "floating" asymmetrical look, 
-           but relative flow for mobile.
-        */}
-        <div className="hero-desc col-span-1 md:col-span-12 order-4 md:order-4 flex justify-center md:justify-end md:absolute md:top-[60%] md:right-0 md:w-auto md:h-auto pointer-events-none md:pointer-events-auto mt-8 md:mt-0">
-             <div className="flex flex-col gap-6 items-center md:items-end text-center md:text-right max-w-xs z-20">
-                <p className="text-slate-600 text-base font-sans leading-relaxed">
-                    {content.hero.description}
-                </p>
-                <Button variant="outline" className="pointer-events-auto px-8 py-3 text-sm border-slate-300 text-slate-800 hover:text-white hover:bg-slate-800 bg-white/50 backdrop-blur-sm">
-                    {content.hero.cta}
-                </Button>
-             </div>
+        {/* DESCRIPTION */}
+        <div className="hero-desc hidden md:flex absolute bottom-[10%] right-[5%] flex-col items-end text-right gap-6 z-20 max-w-xs">
+          <p className="text-slate-600 text-lg font-sans leading-relaxed">
+            {content.hero.description}
+          </p>
+          <Button variant="outline" className="px-10 py-4 text-sm border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white bg-white/80 backdrop-blur-md">
+            {content.hero.cta}
+          </Button>
+        </div>
+
+        {/* Mobile Description */}
+        <div className="md:hidden row-start-4 col-span-1 flex flex-col items-center text-center gap-6 mt-8">
+          <p className="text-slate-600 text-base font-sans leading-relaxed max-w-xs">
+            {content.hero.description}
+          </p>
+          <Button variant="primary" className="px-10 py-4 text-sm">
+            {content.hero.cta}
+          </Button>
         </div>
 
       </div>

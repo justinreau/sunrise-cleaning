@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import gsapFB from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Navbar } from "@/app/components/Navbar";
+import { ReactLenis } from '@studio-freight/react-lenis';
 import { FloatingHeader } from "@/app/components/FloatingHeader";
 import { Hero } from "@/app/components/Hero";
 import { Marquee } from "@/app/components/Marquee";
@@ -19,68 +19,68 @@ import { NotFound } from "@/app/components/NotFound";
 import { Contact } from "@/app/components/Contact";
 import "@/styles/fonts.css";
 
-// Register GSAP ScrollTrigger globally
 gsapFB.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [currentView, setView] = useState('home');
 
-  // Scroll to top on view change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentView]);
 
   return (
-    <div className="bg-background min-h-screen text-slate-900 selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
-      
-      {/* 
-        Using FloatingHeader instead of Navbar for the "Awwwards" look requested.
-        The original Navbar is still available if needed: <Navbar currentView={currentView} setView={setView} />
-      */}
-      <FloatingHeader currentView={currentView} setView={setView} />
-      
-      <main className="flex-1">
-        {currentView === 'home' && (
-          <>
-            <Hero />
-            <Marquee />
-            <Services />
-            <Products />
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
+      <div className="bg-background min-h-screen text-slate-900 selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
+
+        <FloatingHeader currentView={currentView} setView={setView} />
+
+        <main className="flex-1 relative z-10">
+          {currentView === 'home' && (
+            <>
+              <Hero />
+              <Marquee />
+              <Services />
+              <Products />
+              <About />
+              <Team />
+              <GalleryGrid />
+            </>
+          )}
+
+          {currentView === 'services' && (
+            <>
+              <Steps />
+              <ServiceShowcase />
+            </>
+          )}
+
+          {currentView === 'blog' && (
+            <BlogGrid />
+          )}
+
+          {currentView === 'gallery' && (
+            <GalleryGrid />
+          )}
+
+          {currentView === 'team' && (
+            <TeamPage />
+          )}
+
+          {currentView === 'about' && (
             <About />
-            <Team />
-          </>
-        )}
+          )}
 
-        {currentView === 'services' && (
-          <>
-             <Steps />
-             <ServiceShowcase />
-          </>
-        )}
+          {currentView === 'contact' && (
+            <Contact />
+          )}
 
-        {currentView === 'blog' && (
-          <BlogGrid />
-        )}
+          {currentView === 'notFound' && (
+            <NotFound onBack={() => setView('home')} />
+          )}
+        </main>
 
-        {currentView === 'gallery' && (
-          <GalleryGrid />
-        )}
-
-        {currentView === 'team' && (
-          <TeamPage />
-        )}
-
-        {currentView === 'contact' && (
-           <Contact />
-        )}
-
-        {/* Hidden/Fallback 404 Route */}
-        {currentView === 'notFound' && (
-           <NotFound onBack={() => setView('home')} />
-        )}
-      </main>
-
-      {currentView !== 'notFound' && <Newsletter />}
-    </div>
+        {currentView !== 'notFound' && <Newsletter />}
+      </div>
+    </ReactLenis>
   );
 }

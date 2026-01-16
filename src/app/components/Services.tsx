@@ -1,74 +1,66 @@
 import React, { useRef } from 'react';
 import gsapFB from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import content from "@/data/content.json";
 import { ArrowUpRight } from "lucide-react";
 
 export function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // We want to create a stack of pills.
-  
   const onEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Only apply hover effects on Desktop
     if (window.innerWidth >= 768) {
-        const target = e.currentTarget;
-        const img = target.querySelector('.service-bg');
-        gsapFB.to(img, { opacity: 1, scale: 1.05, duration: 0.5, ease: "power2.out" });
-        gsapFB.to(target, { scale: 1.02, duration: 0.3 });
+      const target = e.currentTarget;
+      const img = target.querySelector('.service-bg');
+      const arrow = target.querySelector('.service-arrow');
+      gsapFB.to(img, { opacity: 1, scale: 1, duration: 0.4, ease: "power4.out" });
+      gsapFB.to(target, { scale: 1.02, backgroundColor: "transparent", duration: 0.3 });
+      gsapFB.to(arrow, { rotation: 45, scale: 1.2, duration: 0.3 });
     }
   };
 
   const onLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Only apply hover effects on Desktop
     if (window.innerWidth >= 768) {
-        const target = e.currentTarget;
-        const img = target.querySelector('.service-bg');
-        gsapFB.to(img, { opacity: 0.2, scale: 1, duration: 0.5 }); // Keep low opacity bg
-        gsapFB.to(target, { scale: 1, duration: 0.3 });
+      const target = e.currentTarget;
+      const img = target.querySelector('.service-bg');
+      const arrow = target.querySelector('.service-arrow');
+      gsapFB.to(img, { opacity: 0, scale: 1.2, duration: 0.4, ease: "power4.out" });
+      gsapFB.to(target, { scale: 1, backgroundColor: "#FFFFFF", duration: 0.3 });
+      gsapFB.to(arrow, { rotation: 0, scale: 1, duration: 0.3 });
     }
   };
 
   return (
-    <section ref={containerRef} className="py-[clamp(60px,8vw,120px)] px-[clamp(20px,5vw,80px)] max-w-[1400px] mx-auto">
-      <div className="flex flex-col items-center mb-[clamp(40px,8vw,120px)] relative">
-        <h2 className="text-[clamp(48px,15vw,240px)] font-display text-primary leading-none text-center relative z-10">
+    <section ref={containerRef} className="py-[clamp(80px,10vw,160px)] px-[clamp(20px,5vw,80px)] max-w-[1600px] mx-auto">
+      <div className="flex flex-col items-center mb-[clamp(60px,10vw,140px)] relative">
+        <h2 className="text-[clamp(60px,18vw,300px)] font-display text-primary leading-[0.8] text-center relative z-10 tracking-tighter">
           Ser vi ces
         </h2>
-        {/* Decorative circle icon from design */}
-        <div className="w-[clamp(64px,8vw,120px)] h-[clamp(64px,8vw,120px)] rounded-full bg-primary flex items-center justify-center -mt-[clamp(24px,4vw,64px)] z-20 border-4 border-white relative">
-           <ArrowUpRight className="text-slate-900 w-[clamp(24px,4vw,48px)] h-[clamp(24px,4vw,48px)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[clamp(80px,10vw,150px)] h-[clamp(80px,10vw,150px)] rounded-full bg-primary flex items-center justify-center z-20 border-[6px] border-white rotate-12">
+          <ArrowUpRight className="text-slate-900 w-[40%] h-[40%]" />
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 md:gap-6 items-center w-full">
-        {content.services.map((service, index) => (
-          <div 
+      <div className="flex flex-col gap-4 w-full items-center">
+        {content.services.map((service: any, index: number) => (
+          <div
             key={index}
-            className="group relative flex items-center justify-center w-full md:w-[90%] lg:w-[80%] h-[100px] md:h-[160px] rounded-full overflow-hidden border border-slate-200 cursor-pointer transition-colors bg-white shadow-sm"
+            className="group relative flex items-center w-full md:w-[95%] lg:w-[90%] h-[120px] md:h-[180px] rounded-full overflow-hidden border border-slate-200 cursor-pointer bg-white transition-colors"
             onMouseEnter={onEnter}
             onMouseLeave={onLeave}
           >
-            {/* Background Image (Clipped inside pill) */}
-            {/* Mobile: Opacity 100 always. Desktop: Opacity 0 hover->100 */}
-            <div className="service-bg absolute inset-0 w-full h-full opacity-100 md:opacity-0 transition-opacity duration-500 z-0">
-               <img src={service.image} alt={service.title} className="w-full h-full object-cover brightness-[0.7] md:brightness-100" />
-               <div className="absolute inset-0 bg-black/20 md:bg-transparent" />
+            <div className="service-bg absolute inset-0 w-full h-full opacity-0 scale-110 origin-center z-0 pointer-events-none">
+              <img src={service.image} alt={service.title} className="w-full h-full object-cover brightness-[0.8]" />
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 flex items-center justify-between w-full px-8 md:px-24">
-               <span className="hidden md:block text-slate-400 group-hover:text-white font-sans text-xl transition-colors">0{index + 1}</span>
-               
-               {/* Mobile: White text always. Desktop: Dark -> White on hover */}
-               <h3 className="text-2xl md:text-5xl font-script text-white md:text-slate-900 group-hover:text-white transition-colors text-center w-full md:w-auto drop-shadow-md md:drop-shadow-none">
-                 {service.title}
-               </h3>
-
-               <div className="hidden md:flex w-12 h-12 rounded-full border border-slate-300 group-hover:border-white items-center justify-center transition-colors">
-                  <ArrowUpRight className="text-slate-400 group-hover:text-white" />
-               </div>
+            <div className="relative z-10 flex items-center justify-between w-full px-8 md:px-20 mix-blend-difference md:mix-blend-normal">
+              <span className="hidden md:block text-slate-400 group-hover:text-white font-display text-xl md:text-2xl transition-colors duration-300">
+                0{index + 1}
+              </span>
+              <h3 className="text-3xl md:text-6xl font-display text-slate-900 md:group-hover:text-white transition-colors duration-300 text-center flex-1">
+                {service.title}
+              </h3>
+              <div className="service-arrow w-12 h-12 md:w-16 md:h-16 rounded-full border border-slate-300 group-hover:border-white/50 flex items-center justify-center transition-colors bg-white group-hover:bg-transparent">
+                <ArrowUpRight className="text-slate-900 group-hover:text-white w-6 h-6 md:w-8 md:h-8" />
+              </div>
             </div>
           </div>
         ))}

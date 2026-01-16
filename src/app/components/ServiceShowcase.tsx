@@ -4,55 +4,52 @@ import { ArrowUpRight } from "lucide-react";
 
 export function ServiceShowcase() {
   return (
-    <div className="py-[clamp(60px,8vw,120px)] flex flex-col gap-[clamp(40px,5vw,120px)]">
-       {/* Intro Header */}
-       <div className="text-center px-[clamp(20px,5vw,80px)]">
-          <h1 className="text-[clamp(48px,10vw,240px)] text-primary font-display font-bold leading-none opacity-90">Services</h1>
-       </div>
+    <div className="py-[120px] flex flex-col gap-[120px]">
+      <div className="text-center px-[clamp(20px,5vw,80px)]">
+        <h1 className="text-[clamp(100px,20vw,400px)] text-primary font-display font-bold leading-[0.8] tracking-tighter">
+          Services
+        </h1>
+      </div>
 
-       <div className="flex flex-col gap-[clamp(60px,8vw,120px)]">
-         {content.servicesPage.map((service, index) => (
-           <div 
-             key={index} 
-             className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24 max-w-[1400px] mx-auto px-6 relative`}
-           >
-             {/* Image Side */}
-             <div className="flex-1 relative w-full">
-               <div className={`relative w-full aspect-[4/3] rounded-tl-[150px] rounded-br-[150px] rounded-tr-[150px] overflow-hidden shadow-lg`}>
-                 <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
-               </div>
-               
-               {/* Floating Link Button */}
-               <div className={`absolute top-0 ${index % 2 === 0 ? 'right-0 translate-x-[50%]' : 'left-0 -translate-x-[50%]'} hidden md:flex w-32 h-32 md:w-40 md:h-40 rounded-full bg-primary items-center justify-center p-2 cursor-pointer hover:scale-105 transition-transform z-10 shadow-xl`}>
-                 <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center bg-white">
-                    {/* Using a generic image or the specific one if available for the button, keeping it simple with icon/text or just the image background */}
-                    <div className="absolute inset-0 bg-primary/20 z-10" />
-                    <img src={service.image} className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale" />
-                    <ArrowUpRight className="text-slate-900 w-10 h-10 relative z-20" />
-                 </div>
-               </div>
-             </div>
+      <div className="flex flex-col gap-[160px]">
+        {content.servicesPage.map((service: any, index: number) => (
+          <div
+            key={index}
+            className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-32 max-w-[1600px] mx-auto px-[clamp(20px,5vw,80px)] relative w-full`}
+          >
+            <div className="flex-1 relative w-full group">
+              <div className={`relative w-full aspect-[4/3] rounded-tl-[200px] rounded-br-[200px] overflow-hidden shadow-2xl`}>
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              </div>
 
-             {/* Text Side */}
-             <div className="flex-1 flex flex-col items-start text-left">
-               <h2 className="text-6xl md:text-8xl font-script text-slate-900 mb-8">{service.title}</h2>
-               <p className="text-slate-600 font-sans text-lg leading-relaxed mb-8">
-                 {service.description}
-               </p>
-               
-               {/* Next Service Link Text */}
-               {service.linkTo && (
-                 <div className="mt-8 text-right w-full">
-                   <span className="text-slate-400 block text-sm mb-2">Next</span>
-                   <span className="text-4xl md:text-6xl font-script text-slate-900 cursor-pointer hover:text-primary transition-colors">
-                     {service.linkTo}
-                   </span>
-                 </div>
-               )}
-             </div>
-           </div>
-         ))}
-       </div>
+              <div className={`absolute top-10 ${index % 2 === 0 ? 'right-10' : 'left-10'} w-32 h-32 bg-primary rounded-full flex items-center justify-center border-4 border-white animate-spin-slow`}>
+                <ArrowUpRight className="text-white w-12 h-12" />
+              </div>
+            </div>
+
+            <div className="flex-1 flex flex-col items-start text-left gap-8">
+              <span className="text-9xl font-display text-slate-100 absolute -z-10 -translate-y-1/2 select-none">
+                0{index + 1}
+              </span>
+              <h2 className="text-7xl md:text-8xl font-display text-slate-900 leading-none relative z-10">
+                {service.title}
+              </h2>
+              <p className="text-slate-600 font-sans text-xl leading-relaxed max-w-xl">
+                {service.description}
+              </p>
+
+              {service.linkTo && (
+                <div className="mt-12 pt-8 border-t border-slate-200 w-full">
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 block">Next Service</span>
+                  <span className="text-4xl font-display text-slate-900 cursor-pointer hover:text-primary transition-colors flex items-center gap-4">
+                    {service.linkTo} <ArrowUpRight />
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
