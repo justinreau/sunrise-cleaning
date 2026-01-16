@@ -23,7 +23,9 @@ export function Marquee() {
       <div ref={trackRef} className="flex whitespace-nowrap items-center">
         {[...content.marquee, ...content.marquee, ...content.marquee].map((text, i) => (
           <div key={i} className="flex items-center">
-            <span className="text-[clamp(60px,8vw,120px)] font-display uppercase font-bold text-slate-900 px-8 tracking-tighter hover:text-primary transition-colors cursor-default">
+            <span
+              className="text-[clamp(3rem,8vw,8rem)] font-display text-slate-900 font-black uppercase px-[clamp(20px,4vw,60px)]"
+            >
               {text}
             </span>
             <div className="w-4 h-4 rounded-full bg-primary mx-4" />

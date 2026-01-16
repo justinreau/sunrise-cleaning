@@ -35,11 +35,26 @@ h5,
 h6,
 .font-display {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
-::selection {
-  background-color: var(--color-primary);
-  color: white;
+strong,
+b {
+  font-weight: 900;
+  color: var(--color-primary);
+}
+
+@layer base {
+  :root {
+    --fs-display: clamp(3rem, 10vw, 10rem);
+    --fs-h1: clamp(2.5rem, 6vw, 5rem);
+    --fs-h2: clamp(1.5rem, 4vw, 3rem);
+    --fs-body: clamp(1rem, 1.2vw, 1.25rem);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
 }
