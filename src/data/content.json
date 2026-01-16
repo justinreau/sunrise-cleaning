@@ -1,0 +1,191 @@
+{
+  "site": {
+    "title": "Sunrise Cleaning",
+    "description": "Professional Cleaning Services",
+    "email": "hello@sunrisecleaning.com",
+    "phone": "(304) 555-0123",
+    "address": ["123 Sunrise Blvd,", "New York(NY), 10001"],
+    "socials": [
+        { "platform": "Facebook", "url": "https://facebook.com" },
+        { "platform": "Instagram", "url": "https://instagram.com" },
+        { "platform": "Twitter", "url": "https://twitter.com" }
+    ]
+  },
+  "navigation": [
+    { "label": "Home", "href": "home" },
+    { "label": "Services", "href": "services" },
+    { "label": "About", "href": "about" },
+    { "label": "Contact", "href": "contact" }
+  ],
+  "hero": {
+    "headlineLeft": "Fresh",
+    "headlineRight": "Home",
+    "subheadline": "A cleaner home is a happier home",
+    "description": "Experience the joy of a spotless home without lifting a finger. Our professional team brings the sunshine back to your living space.",
+    "cta": "Book Now"
+  },
+  "marquee": [
+    "Residential", "Commercial", "Deep Clean", "Move-In", "Move-Out", "Sanitizing", "Organizing"
+  ],
+  "steps": [
+    { "title": "Book", "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=800&q=80" },
+    { "title": "Clean", "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=800&q=80" },
+    { "title": "Inspect", "image": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=800&q=80" },
+    { "title": "Relax", "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=800&q=80" }
+  ],
+  "servicesPage": [
+    {
+      "title": "Standard Clean",
+      "description": "Our regular maintenance cleaning keeps your home consistently fresh. We dust, vacuum, mop, and sanitize all key areas including kitchens and bathrooms.",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=1200&q=80",
+      "linkTo": "Deep Clean"
+    },
+    {
+      "title": "Deep Clean",
+      "description": "A thorough top-to-bottom clean for homes that need extra attention. We tackle built-up grime, baseboards, inside appliances, and hard-to-reach spots.",
+      "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=1200&q=80",
+      "linkTo": "Move In/Out"
+    },
+    {
+      "title": "Move In/Out",
+      "description": "Ensure a fresh start or a full deposit return. Our move-in/move-out service leaves the space completely empty and sparkling clean for the next resident.",
+      "image": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=1200&q=80",
+      "linkTo": "Standard"
+    }
+  ],
+  "blog": {
+    "featured": {
+      "title": "5 Tips for a Tidy Living Room",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=1200&q=80",
+      "content": [
+        "Keeping your living room tidy doesn't have to be a chore. Start by decluttering daily.",
+        "Use hidden storage solutions to keep items out of sight but easily accessible.",
+        "Establish a 'reset' routine every evening to wake up to a clean home."
+      ]
+    },
+    "posts": [
+      {
+        "title": "Green Cleaning Products Guide",
+        "date": "Jan 15, 2024",
+        "tag": "Eco-Friendly",
+        "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "How to Organize Your Pantry",
+        "date": "Jan 10, 2024",
+        "tag": "Organization",
+        "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "title": "Spring Cleaning Checklist",
+        "date": "Jan 05, 2024",
+        "tag": "Seasonal",
+        "image": "https://images.unsplash.com/photo-1724847885015-be191f1a47ef?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "title": "Spotless Kitchens",
+      "image": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=800&q=80",
+      "span": "col-span-1"
+    },
+    {
+      "title": "Organized Spaces",
+      "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=800&q=80",
+      "span": "col-span-1"
+    },
+    {
+      "title": "Bright Interiors",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=1200&q=80",
+      "span": "col-span-2 md:col-span-2"
+    },
+    {
+      "title": "Fresh Linens",
+      "image": "https://images.unsplash.com/photo-1724847885015-be191f1a47ef?auto=format&fit=crop&w=800&q=80",
+      "span": "col-span-1"
+    },
+    {
+      "title": "Deep Cleaning",
+      "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=800&q=80",
+      "span": "col-span-1"
+    }
+  ],
+  "products": [
+    {
+      "title": "Eco-Friendly Spray",
+      "price": "$12.00",
+      "oldPrice": "$15.00",
+      "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Microfiber Kit",
+      "price": "$25.00",
+      "oldPrice": "$30.00",
+      "image": "https://images.unsplash.com/photo-1724847885015-be191f1a47ef?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Glass Cleaner",
+      "price": "$10.00",
+      "oldPrice": "$14.00",
+      "image": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Wood Polish",
+      "price": "$18.00",
+      "oldPrice": "$22.00",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "services": [
+    {
+      "title": "Residential",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Commercial",
+      "image": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Deep Clean",
+      "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Move-In",
+      "image": "https://images.unsplash.com/photo-1724847885015-be191f1a47ef?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "title": "Move-Out",
+      "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "about": {
+    "titleParts": ["Abo", "ut", "us"],
+    "description": "Bringing sunshine into your home with eco-friendly cleaning solutions and a team dedicated to perfection."
+  },
+  "team": [
+    {
+      "name": "Sarah Miller",
+      "role": "Team Lead",
+      "image": "https://images.unsplash.com/photo-1652572036885-b5e9205dd847?auto=format&fit=crop&w=600&q=80",
+      "description": "Expert in deep cleaning strategies."
+    },
+    {
+      "name": "David Chen",
+      "role": "Sanitization Expert",
+      "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=600&q=80",
+      "description": "Specializes in commercial spaces."
+    }
+  ],
+  "teamBanner": {
+      "headline": "A team you can trust",
+      "subheadline": "Fully vetted, insured, and trained professionals dedicated to your home's hygiene.",
+      "image": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?auto=format&fit=crop&w=1200&q=80",
+      "overlayImage": "https://images.unsplash.com/photo-1729932989806-9ba0cc0f3465?auto=format&fit=crop&w=1200&q=80"
+  },
+  "notFound": {
+    "image": "https://images.unsplash.com/photo-1556579573-1629c871d914?auto=format&fit=crop&w=800&q=80",
+    "title": "Page not found",
+    "cta": "Back to home"
+  }
+}

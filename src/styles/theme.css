@@ -1,0 +1,48 @@
+@theme {
+  --color-primary: #FF6900;
+  --color-secondary: #00BBA7;
+  
+  /* Text Colors */
+  --color-text-main: #1E2939;
+  --color-text-muted: #4A5565;
+  --color-text-light: rgba(74, 85, 101, 0.6);
+  
+  /* Background Colors */
+  --color-background: #FFFFFF;
+  --color-background-muted: #F4F5F7;
+  
+  /* UI Colors */
+  --color-border: rgba(30, 41, 57, 0.1);
+  
+  /* Fonts */
+  --font-display: "Prompt", sans-serif;
+  --font-sans: "Prompt", sans-serif;
+  --font-script: "Prompt", sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Base Utility Classes for Layout */
+.section {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 80px);
+}
+
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
