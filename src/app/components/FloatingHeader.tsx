@@ -3,19 +3,19 @@ import content from "@/data/content.json";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { createPortal } from 'react-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export function FloatingHeader() {
+// 1. THIS INTERFACE IS MISSING IN YOUR FILE. IT IS REQUIRED.
+interface FloatingHeaderProps {
+  currentView: string;
+}
+
+export function FloatingHeader({ currentView }: FloatingHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
   const navItems = content.navigation;
 
-  const isActive = (href: string) => {
-    if (href === 'home') return location.pathname === '/';
-    return location.pathname === `/${href}`;
-  };
-
-  const PortalOverlay = (): JSX.Element | null => {
+  // Helper to render portal content safely
+  const PortalOverlay = () => {
     if (typeof document === 'undefined') return null;
     return createPortal(
       <motion.div
@@ -36,7 +36,7 @@ export function FloatingHeader() {
         </div>
 
         <nav className="flex flex-col gap-4">
-          {navItems.map((item, i) => (
+          {navItems.map((item: any, i: number) => (
             <Link
               key={item.label}
               to={item.href === 'home' ? '/' : `/${item.href}`}
@@ -50,7 +50,7 @@ export function FloatingHeader() {
         </nav>
       </motion.div>,
       document.body
-    ) as unknown as JSX.Element;
+    );
   };
 
   return (
@@ -63,18 +63,21 @@ export function FloatingHeader() {
           </Link>
 
           <div className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href === 'home' ? '/' : `/${item.href}`}
-                className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isActive(item.href)
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item: any) => {
+              const isActive = currentView === item.href || (item.href === 'home' && currentView === '');
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href === 'home' ? '/' : `/${item.href}`}
+                  className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 ${isActive
+                    ? 'bg-slate-900 text-white'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                    }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-2">

@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import gsapFB from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis } from '@studio-freight/react-lenis';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 // Components
 import { FloatingHeader } from "@/app/components/FloatingHeader";
@@ -47,7 +47,6 @@ function ScrollToTop() {
 
 export default function App() {
   const { pathname } = useLocation();
-  const navigate = useNavigate(); // Hook to help with navigation logic if needed
 
   return (
     <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
